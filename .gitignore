@@ -1,0 +1,10 @@
+*.EXE
+*.OBJ
+*.MAP
+*.TR
+*.LST
+*.TXT
+*.BAT
+_*.*
+!README.TXT
+TEST/
