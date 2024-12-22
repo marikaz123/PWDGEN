@@ -50,7 +50,7 @@ nxs:
         ret
         ENDP
 
-UDATASEG
+DATASEG
 EXTRN seed:WORD,oSet,foBuff
 
         END
