@@ -79,7 +79,7 @@ svBuff:
          test [cmdfl],MASK d ;na ekran tez?
          jz noScr
          mov cx,[btwr]
-         mov bx,2 ;uchwyt
+         mov bx,1 ;uchwyt
          FWRITE foBuff
   noScr:
          FCREATE fName
