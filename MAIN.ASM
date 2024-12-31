@@ -157,10 +157,10 @@ pwdl    DW 10
 okMsg   DB "Hasla zapisano w pliku: "
 fName   DB 12 DUP (0),0
 defFN   DB '_pwd__',0
-ucs     DB 'ZAQWSXCDERFVBGTYHNMJUIKLOP'
-scs     DB ',.?',3bh,27h,':"[]{}|=+-_)(*&^%$#@!~`'
-dgs     DB '0325417869','3910746258'
-lls     DB 'plokmijnuhbygvtfcrdxeszwaq'
+ucs     DB 'MYUAGSPNHJIRXBKZOCQLWDVTEF'
+scs     DB ']-@,#)%"|:*=+_{',3Bh,'[$',27h,'}~(&^!`.?'
+dgs     DB '5834076192','4691253807'
+lls     DB 'ipzcjfehsoyxwqutlrkmbnvadg'
 ACH = $-ucs    ; .
 LCH = scs-ucs  ;   ilosc
 SCH = dgs-scs  ;    .  znakow
