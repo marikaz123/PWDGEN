@@ -1,6 +1,6 @@
 ; ---
 
-info DB 'GENERATOR HASEL ++ PWDGEN v1.0 ++ (c)1997 ',27h,'MARIKAZ',27h,' ++ (F2412)',0Dh,0Ah
+info DB 'GENERATOR HASEL ++ PWDGEN v1.0 (F2412) ++ (c)1997 ',27h,'MARIKAZ',27h,0Dh,0Ah
 DB 0Dh,0Ah
 DB '   PWDGEN.EXE [/D] [/L[:]nn] [/S[:]<duls>] [OutFile]',0Dh,0Ah
 DB 0Dh,0Ah
@@ -17,6 +17,5 @@ lErr DB 'Ilosc znakow hasla poza zakresem.',0Dh,0Ah,0
 sErr DB 'Blad zestawu znakow. Oczekiwano: /s[:]<duls>',0Dh,0Ah,0
 fErr DB 'Blad i/o operacji na pliku.',0Dh,0Ah,0
 iErr DB 'Brak dostepnego indeksu dla domyslnej nazwy pliku.',0Dh,0Ah,0
-
 feMSG DB 'Plik jest obecny na dysku. Zastapic? [t/n] ',0
 noMSG DB 'Zapis do pliku przerwano.',0Dh,0Ah,0

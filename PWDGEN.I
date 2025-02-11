@@ -10,7 +10,7 @@ CR  EQU 0Dh
 
 PLO EQU 8    ;min. ilosc znakow hasla
 PHI EQU 30   ;max. ilosc znakow hasla
-PPF EQU 10   ;ilosc hasel w pliku !plik max. 512 bajtow!
+PPF EQU 10   ;ilosc hasel w pliku. Uwaga! Plik max. 512 bajtow!
 
 MACRO PUTSTR
       LOCAL @l,@x
