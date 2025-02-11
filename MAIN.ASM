@@ -1,5 +1,5 @@
 ;----------------------------------------------------------------------------
-; PWDGEN v1.0 ** GENERATOR HASEL ** (c)1997 'marikaz'                (F2412)
+; PWDGEN v1.0.1 ** GENERATOR HASEL ** (c)1997 'marikaz'              (F2412)
 ;----------------------------------------------------------------------------
 
         IDEAL
@@ -53,7 +53,7 @@ calcNC:
         mov cx,[pwdl]      ;cx=dlugosc hasla
         call GenPwds
         mov [btwr],cx      ;zwraca ilosc znakow do zapisu
-
+        nop
         FFIND fName
         jc svBuff
         lea si,[feMsg]
@@ -76,77 +76,82 @@ calcNC:
         jmp svMsg
 
 svBuff:
-         test [cmdfl],MASK d ;na ekran tez?
-         jz noScr
-         mov cx,[btwr]
-         mov bx,1 ;uchwyt
-         FWRITE foBuff
-  noScr:
-         FCREATE fName
-         mov bx,ax
-         mov ax,4
-         jc svMsg
-         mov cx,[btwr]
-         sub cx,2       ;pomin ostatni enter w pliku
-         FWRITE foBuff
-         mov ax,4
-         jc svMsg
-         FCLOSE
-         mov ax,4
-         jc svMsg
-         mov ax,0
+        cmp ax,12h ;
+        je nerr    ; tylko kod bledu: No more matching file
+        mov ax,4   ;
+        jmp svMsg  ;
+  nerr:
+        test [cmdfl],MASK d ;na ekran tez?
+        jz noScr
+        mov cx,[btwr]
+        mov bx,1 ;uchwyt
+        FWRITE foBuff
+ noScr:
+        FCREATE fName
+        mov bx,ax
+        mov ax,4
+        jc svMsg
+        mov cx,[btwr]
+        sub cx,2       ;pomin ostatni enter w pliku
+        FWRITE foBuff
+        mov ax,4
+        jc svMsg
+        FCLOSE
+        mov ax,4
+        jc svMsg
+        mov ax,0
 svMsg:
-         push ax
-         mov bx,ax
-         shl bx,1
-         mov si,[msgIdx+bx]
-         PUTSTR
-         pop ax
+        push ax
+        mov bx,ax
+        shl bx,1
+        mov si,[msgIdx+bx]
+        PUTSTR
+        pop ax
 
-         mov ah,4ch ;errorlevel: 0  bez bledow
-         int 21h    ;            1  ogolny blad sciezki
-         ENDP       ;            2  parametr /L:nn poza zakresem
-                    ;            3  blad parametru /S
-                    ;            4  blad i/o pliku
-                    ;            5  brak dostepnego indeksu dla dom. nazwy
-                    ;            6  plik obecny na dysku - zapis przerwano
+        mov ah,4ch ;errorlevel: 0  bez bledow
+        int 21h    ;            1  ogolny blad sciezki
+        ENDP       ;            2  parametr /L:nn poza zakresem
+                   ;            3  blad parametru /S
+                   ;            4  blad i/o pliku
+                   ;            5  brak dostepnego indeksu dla dom. nazwy
+                   ;            6  plik obecny na dysku - zapis przerwano
 
 PROC     SetFN
-         lea si,[defFN]
-         lea di,[fName]
-         CPSTR
-         push di
-         add di,2
-         mov ax,'t.'
-         stosw
-         mov ax,'tx'
-         stosw
-         pop di
-         mov cx,100
+        lea si,[defFN]
+        lea di,[fName]
+        CPSTR
+        push di
+        add di,2
+        mov ax,'t.'
+        stosw
+        mov ax,'tx'
+        stosw
+        pop di
+        mov cx,100
 nidx:
-         mov ax,100
-         sub ax,cx
-         aam
-         xchg ah,al
-         add ax,'00'
-         mov [di],ax
-         FFIND fName
-         jc ffn
-         loop nidx
-         mov ax,5
-         stc
-         ret
+        mov ax,100
+        sub ax,cx
+        aam
+        xchg ah,al
+        add ax,'00'
+        mov [di],ax
+        FFIND fName
+        jc ffn
+        loop nidx
+        mov ax,5
+        stc
+        ret
 ffn:
-         cmp al,12h   ;DOS: no more matching file
-         jne eio
-         mov ax,0
-         clc
-         ret
+        cmp al,12h   ;DOS: no more matching file
+        jne eio
+        mov ax,0
+        clc
+        ret
 eio:
-         mov ax,4     ;inny blad i/o
-         stc
-         ret
-         ENDP
+        mov ax,4     ;inny blad i/o
+        stc
+        ret
+        ENDP
 
 DATASEG
 PUBLIC fName,pwdl,cmdfl
@@ -159,6 +164,9 @@ fName   DB 12 DUP (0),0
 defFN   DB '_pwd__',0
 ucs     DB 'MYUAGSPNHJIRXBKZOCQLWDVTEF'
 scs     DB ']-@,#)%"|:*=+_{',3Bh,'[$',27h,'}~(&^!`.?'
+        IFDEF ALLSC
+         DB '\>/<'
+        ENDIF
 dgs     DB '5834076192','4691253807'
 lls     DB 'ipzcjfehsoyxwqutlrkmbnvadg'
 ACH = $-ucs    ; .

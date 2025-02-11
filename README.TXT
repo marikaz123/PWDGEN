@@ -20,15 +20,14 @@ program uzyje opcji domyslnych, o ktorych ponizej.
                          s - znaki specjalne,
 OutFile  Nazwa pliku dla wygenerowanych hasel.
 
-- Kolejnosc wystapienia parametrow jest dowolna,
+- Kolejnosc wystapienia tych parametrow jest dowolna,
 - biale znaki (space, tab) pomiedzy parametrami sa ignorowane,
 - wielkosc liter jest dowolna.
 
  OPCJE DOMYSLNE
 
-/D      - Brak.
-/L[:]nn - nn=10 znakow.
-/S[:]   - Domyslnie przyjmuje parametry: /S:dul - cyfry i litery duze, male
+/L:10   - 10 znakow.
+/S:dul  - cyfry, litery duze i male.
 OutFile - _pwd__NN.txt, gdzie NN jest indeksem z przedzialu 00..99.
           Plik zostanie zapisany pod nazwa z pierwszym wolnym indeksem.
           W przypadku braku wolnego indeksu - blad.
@@ -36,12 +35,10 @@ OutFile - _pwd__NN.txt, gdzie NN jest indeksem z przedzialu 00..99.
  UWAGI
 
 - Z zestawu znakow specjalnych wykluczono:
-  /  slash,
-  \  backslash,
-  <  less than,
-  >  greater than.
+ "/"  slash, "\"  backslash, "<"  less than, ">"  greater than.
 
-- Jesli juz podano opcje /S[:] to trzeba rowniez podac zestaw(y) znakow.
+    | W razie potrzeby mozna dolaczyc te znaki
+    | kompilujac MAIN.ASM z flaga /dALLSC
 
 - Jezeli plik OutFile jest juz na dysku, uzytkownik zostanie o tym
   poinformowany z pytaniem o nadpisanie istniejacego pliku. Odpowiedzi
@@ -54,20 +51,19 @@ to wartosc errorlevel:
 
 0  bez bledow
    PWDGEN: Haslo zapisano w pliku: <nazwa>.
-1  ogolny blad sciezki
+1  ogolny blad parametrow
    PWDGEN: Wyswietla info jak dla "/?"
 2  parametr /L:nn poza zakresem
    PWDGEN: Ilosc znakow hasla poza zakresem.
 3  blad parametru /S
    PWDGEN: Blad zestawu znakow. Oczekiwano: /s[:]<duls>
 4  blad i/o pliku
-   PWDGEN: Blad i/o operacji na pliku.
+   PWDGEN: Blad operacji i/o na pliku.
 5  brak indeksu
    PWDGEN: Brak dostepnego indeksu dla domyslnej nazwy pliku.
 6  przerwano zapis do pliku
    PWDGEN: Plik jest obecny na dysku. Zastapic? [t/n] n
            Zapis do pliku przerwano.
-
 
 Program zostal sprawdzony, poprawiony i ponownie skompilowany (TASM) pod
 kontrola emulatora DOSBox 0.74-3
