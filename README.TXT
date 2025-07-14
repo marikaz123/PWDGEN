@@ -28,45 +28,42 @@ OutFile  Nazwa pliku dla wygenerowanych hasel.
 
 /L:10   - 10 znakow.
 /S:dul  - cyfry, litery duze i male.
-OutFile - _pwd__NN.txt, gdzie NN jest indeksem z przedzialu 00..99.
+OutFile - __pwd_NN.txt, gdzie NN jest indeksem z przedzialu 00..99.
           Plik zostanie zapisany pod nazwa z pierwszym wolnym indeksem.
-          W przypadku braku wolnego indeksu - blad.
+          W przypadku braku wolnego indeksu program zglosi blad.
 
  UWAGI
 
 - Z zestawu znakow specjalnych wykluczono:
  "/"  slash, "\"  backslash, "<"  less than, ">"  greater than.
 
-    | W razie potrzeby mozna dolaczyc te znaki
-    | kompilujac MAIN.ASM z flaga /dALLSC
-
 - Jezeli plik OutFile jest juz na dysku, uzytkownik zostanie o tym
-  poinformowany z pytaniem o nadpisanie istniejacego pliku. Odpowiedzi
+  poinformowany pytaniem o nadpisanie istniejacego pliku. Odpowiedzi
   standardowe: klawisz t - tak, n - nie.
 
  POWIADOMIENIA
 
 Powiadomienia dotycza nastepujacych przypadkow - cyfra przd napisem
-to wartosc errorlevel:
+to zwracana wartosc errorlevel:
 
 0  bez bledow
-   PWDGEN: Haslo zapisano w pliku: <nazwa>.
+   Haslo zapisano w pliku: <nazwa>.
 1  ogolny blad parametrow
-   PWDGEN: Wyswietla info jak dla "/?"
+   Wyswietla info jak dla "/?"
 2  parametr /L:nn poza zakresem
-   PWDGEN: Ilosc znakow hasla poza zakresem.
+   Ilosc znakow hasla poza zakresem.
 3  blad parametru /S
-   PWDGEN: Blad zestawu znakow. Oczekiwano: /s[:]<duls>
+   Blad zestawu znakow. Oczekiwano: /s[:]<duls>
 4  blad i/o pliku
-   PWDGEN: Blad operacji i/o na pliku.
+   Blad operacji i/o na pliku.
 5  brak indeksu
-   PWDGEN: Brak dostepnego indeksu dla domyslnej nazwy pliku.
-6  przerwano zapis do pliku
-   PWDGEN: Plik jest obecny na dysku. Zastapic? [t/n] n
-           Zapis do pliku przerwano.
+   Brak dostepnego indeksu dla domyslnej nazwy pliku.
+6  zapis przerwano
+   Plik jest obecny na dysku. Zastapic? [t/n] n
+   Zapis do pliku przerwano.
 
-Program zostal sprawdzony, poprawiony i ponownie skompilowany (TASM) pod
-kontrola emulatora DOSBox 0.74-3
+Program w biezacej wersji zostal sprawdzony, poprawiony i ponownie
+skompilowany (TASM) pod kontrola emulatora DOSBox 0.74-3
 
  IFILEIO.MAC
 
