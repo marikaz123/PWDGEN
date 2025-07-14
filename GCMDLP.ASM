@@ -1,4 +1,4 @@
-; GetCmdLP:PROC rev. B1
+; GetCmdLP:PROC rev. B2
 ; --> [/D] [/L[:]nn] [/S[:]duls] [OutFile]
 
           IDEAL
@@ -74,10 +74,9 @@ PROC      GetCmdLP
           test [es:cmdfl],MASK l
           jnz @@err
           or [es:cmdfl],MASK l
-          cmp [BYTE si],':'
-          jne @@l
+          cmp [BYTE si],'='
+          jne @@err
           inc si
-     @@l:
           lodsb
           cmp al,'0'
           jb @@err

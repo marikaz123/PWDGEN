@@ -14,7 +14,9 @@ PPF EQU 10   ;ilosc hasel w pliku. Uwaga! Plik max. 512 bajtow!
 
 MACRO PUTSTR
       LOCAL @l,@x
+      push bx
       mov ah,0eh
+      mov bh,0
   @l:
       lodsb
       or al,al
@@ -22,6 +24,7 @@ MACRO PUTSTR
       int 10h
       jmp @l
   @x:
+      pop bx
       ENDM
 
 MACRO CPSTR

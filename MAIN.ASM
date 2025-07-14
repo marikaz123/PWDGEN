@@ -1,5 +1,5 @@
 ;----------------------------------------------------------------------------
-; PWDGEN v1.0.1 ** GENERATOR HASEL ** (c)1997 'marikaz'              (F2412)
+; PWDGEN v1.0.2 ** GENERATOR HASEL ** (c)1997 'marikaz'              (F2412)
 ;----------------------------------------------------------------------------
 
         IDEAL
@@ -53,7 +53,6 @@ calcNC:
         mov cx,[pwdl]      ;cx=dlugosc hasla
         call GenPwds
         mov [btwr],cx      ;zwraca ilosc znakow do zapisu
-        nop
         FFIND fName
         jc svBuff
         lea si,[feMsg]
@@ -161,7 +160,7 @@ cmdfl   FLAGS <0,0,0,0,1,1,1,0>   ;domyslnie: /s:dul
 pwdl    DW 10
 okMsg   DB "Hasla zapisano w pliku: "
 fName   DB 12 DUP (0),0
-defFN   DB '_pwd__',0
+defFN   DB '__pwd_',0
 ucs     DB 'MYUAGSPNHJIRXBKZOCQLWDVTEF'
 scs     DB ']-@,#)%"|:*=+_{',3Bh,'[$',27h,'}~(&^!`.?'
         IFDEF ALLSC
